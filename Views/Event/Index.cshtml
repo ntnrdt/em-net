@@ -1,0 +1,30 @@
+﻿@model List<MeetApp.Data.Entities.Event>
+
+@{
+    ViewData["Title"] = "All Events";
+    var carouoselItems = Model.OrderBy(x=> x.Date)
+        .Where(x=> !string.IsNullOrEmpty(x.ImageUrl))
+        .Take(3)
+        .ToList();
+}
+
+@if(Model.Count > 0)
+{
+    if (carouoselItems.Any())
+    {
+        <partial name="_EventCarouselPartial" model="@carouoselItems" />
+    }
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <partial name="_EventCardPartial" model="@item" />
+            </div>
+        }
+    </div>
+}
+else
+{
+    <partial name="_NoEventsPartial" />
+}

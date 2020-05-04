@@ -1,0 +1,68 @@
+@using MeetApp.Data.Entities;
+@using MeetApp.Data.Enum;
+@model Event
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div>
+    <h4>Event - Edit</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <div>@Html.DisplayFor(model => model.Id)</div>
+                </div>
+            <div class="form-group">
+                    <label asp-for="Title">Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter Title">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date">Event Date</label>
+                    <input asp-for="Date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price">Price</label>
+                    <input asp-for="Price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl">ImageUrl</label>
+                    <input asp-for="ImageUrl" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address">Address</label>
+                    <input asp-for="Address" class="form-control" placeholder="Address of event..." />
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="City">City</label>
+                        <input asp-for="City" class="form-control" placeholder="City..." />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Country">Country</label>
+                        <input asp-for="Country" class="form-control" placeholder="Country..." />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OnlineUrl">Online Url</label>
+                    <input asp-for="OnlineUrl" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Save</button>
+                <a asp-action="Index" class="btn btn-danger">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

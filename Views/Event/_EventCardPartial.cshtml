@@ -1,0 +1,18 @@
+@model MeetApp.Data.Entities.Event
+
+@{
+   var hideDetailsButton = ViewBag.HideDetailsButton;
+}
+
+<div class="card">
+  <img class="card-img-top" style="background: url(@Model.ImageUrl);">
+  <div class="card-body">
+    <h5 class="card-title">@Model.Title</h5>
+    <p class="card-text">@Model.Description</p>
+
+    @if(hideDetailsButton != true)
+    {
+      <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-primary">Details</a>
+    }
+  </div>
+</div>
