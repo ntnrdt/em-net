@@ -1,7 +1,7 @@
 @using MeetApp.Data.Entities;
 
 @{
-    var listOfMemes = new List<Event>()
+    var cards = new List<Event>()
         {
             new MeetApp.Data.Entities.Event
             {
@@ -31,10 +31,10 @@
 </div>
 
 <div class="row">
-    @foreach (var item in listOfMemes)
+    @foreach (var card in cards)
     {
         <div class="col-md-4 mb-4">
-            <partial name="_EventCardPartial" model="@item"/>
+            <partial name="_EventCardPartial" model="@card"/>
         </div>
     }
 </div>

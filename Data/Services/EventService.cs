@@ -21,7 +21,7 @@ namespace MeetApp.Data.Services
         /// <returns></returns>
         public List<Event> Get()
         {
-            var accounts = new List<Event>();
+            var events = new List<Event>();
 
             try
             {
@@ -33,7 +33,7 @@ namespace MeetApp.Data.Services
 
                 using (var dataReader = cmd.ExecuteReader())
                     while (dataReader.Read())
-                        accounts.Add(AutoMap(dataReader));
+                        events.Add(AutoMap(dataReader));
 
                 connection.Close();
             }
@@ -42,7 +42,7 @@ namespace MeetApp.Data.Services
                 Debugger.Log(0, "Get", ex.Message);
             }
 
-            return accounts;
+            return events;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace MeetApp.Data.Services
         {
             if (id == null) return null;
 
-            var account = new Event();
+            var @event = new Event();
 
             try
             {
@@ -67,7 +67,7 @@ namespace MeetApp.Data.Services
 
                 using (var dataReader = cmd.ExecuteReader())
                     while (dataReader.Read())
-                        account = AutoMap(dataReader);
+                        @event = AutoMap(dataReader);
 
                 connection.Close();
             }
@@ -76,7 +76,7 @@ namespace MeetApp.Data.Services
                 Debugger.Log(0, "Get", ex.Message);
             }
 
-            return account;
+            return @event;
         }
 
         /// <summary>
@@ -199,8 +199,8 @@ namespace MeetApp.Data.Services
         /// Giving the expected return Type and the value from the DataReader.
         /// Tries to return the conversion.
         /// </summary>
-        /// <param name="value"></param>
-        /// <typeparam name="T"></typeparam>
+        /// <param name="value">Value to  be converted.</param>
+        /// <typeparam name="T">Type expected.</typeparam>
         /// <returns></returns>
         private dynamic GetValue<T>(object value)
         {
